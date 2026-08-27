@@ -1,0 +1,104 @@
+=== Getting Started
+
+* Create a git repo from this template
+* Clone the repo and *cd* into it
+
+=== Understanding the Basic Template Directory Structure
+
+. Content Directory
++
+.tree output
+[source,shell]
+----
+.
+├── README.adoc                 # Readme file
+├── config                      # Defines VMs, network and firewall
+├── runtime-automation          # Scripts directory for setup/next/solve modules 
+├── setup-automation            # Scripts directory when provisioning
+├── ui-config.yml               # Configuration file
+├── site.yml                    # Theme config
+└── content                     # Content directory
+    ├── antora.yml              # Antora configuration file. You can add "inline vars" here to render within your content
+    └── modules/ROOT
+        ├── assets
+        │   └── images                       # Images used in your content 
+        │       └── example-image.png
+        ├── pages                            # Your content goes here
+        │   ├── module-01.adoc               # First module of your lab, e.g. overview etc 
+        │   ├── module-02.adoc               # Second module of your lab  
+        │   └── module-03.adoc               # Third module
+----
+
+. Lab definition directory
++
+.tree output
+[source,shell]
+----
+config/
+├── firewall.yaml                           # Define the egress/ingress rules to be allowed
+├── instances.yaml                          # Define the instances to be created
+└── networks.yml                            # Define the networks to be created
+----
+
+
+. Runtime Scripts Directory Structure
++
+.tree output
+[source,shell]
+----
+runtime-automation/
+├── module_1                            # The directory name should be the same as 
+│                                       # the module content page name
+│   ├── setup.sh                        # Setup playbook which run at start of module 
+│                                       # and when clicked on next button
+│   ├── solve.sh                        # Solve playbook, run when clicked on solve button
+│   └── validation.sh                   # Validation playbook, run when click on next button
+├── ansible.cfg                         # Ansible configuration used with module playbooks
+└── main.yml                            # Playbook to be called in each step
+----
+
+. Setup Scripts Directory Structure
++
+.tree output
+[source,shell]
+----
+setup-automation/
+├── setup-vmname.sh                     # Script to be executed on vmname when is provisioned
+├── ansible.cfg                         # Ansible configuration used with module playbooks
+└── main.yml                            # Playbook to be called in each step
+----
+
+
+== Understanding UI Configration file
+. Example: The *ui-config.yml* configuration file
++
+.tree output
+[source,shell]
+----
+antora:
+  name: modules
+  dir: www
+  modules:
+    - name: 01-playbook-inventory               # Module Name
+      label: Playbook Inventory                 # Module Label
+      solveButton: true                         # Enable Solve button
+    - name: 02-playbook-directory-structure
+      label: Playbook Directory Structure
+      solveButton: true
+tabs:
+  - name: VSCode Editor                         # Tab name
+    port: 8443                                  # Port no of the service
+    path: /?folder=/home/rhel/ansible-files/    # Path suffix
+  - name: ">_control"                           # Tab name
+    port: 443                                   # Port of the tt1 terminal
+    path: /tty1                                 # Path to the tty1 terminal
+----
+
+=== Development Cycle
+
+. Edit your content in `content/modules/ROOT/pages/`
+. Use `git` to branch and commit your work
+. Push your work to your repo
+.. You should use `git tags` or `git branches` in production
+.. However development items default to the head of `main`
+

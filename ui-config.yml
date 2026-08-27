@@ -1,0 +1,21 @@
+---
+
+antora:
+  name: modules
+  dir: www
+  modules:
+    - name: module-01
+      label: "Writing your lab"
+      solveButton: true
+    - name: module-02
+      label: "Antora"
+      solveButton: true
+    - name: module-03
+      label: "Tabs"
+
+tabs:
+  - name: ">_ terminal"
+    url: /wetty
+  - name: "Asciidoc Doc"
+    url: https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/
+    external: true
