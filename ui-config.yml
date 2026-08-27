@@ -21,5 +21,3 @@ tabs:
     external: true
   - name: "RHEL Web Console"
     url: https://cockpit-${guid}.${domain}/
-  - name: ">_ terminal"
-    url: /wetty_rhel/ssh/root
