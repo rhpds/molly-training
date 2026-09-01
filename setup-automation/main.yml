@@ -73,8 +73,8 @@
     when:
     - r_result is defined
     - r_result.rc != 0
-    
-    - name: Execute module_stage-host.sh if it exists
+
+  - name: Execute module_stage-host.sh if it exists
     when: r_script_test.stat.exists
     shell: "sh -x /tmp/setup-scripts/setup-{{ ansible_host }}.sh > /tmp/setup-scripts/setup-{{ ansible_host }}.log 2>&1"
     become: true
