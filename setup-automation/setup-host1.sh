@@ -22,6 +22,8 @@ firewall-cmd --reload
 echo "[WebService]" > /etc/cockpit/cockpit.conf
 echo "Origins = https://cockpit-${GUID}.${DOMAIN}" >> /etc/cockpit/cockpit.conf
 echo "AllowUnencrypted = true" >> /etc/cockpit/cockpit.conf
+echo "ProtocolHeader = X-Forwarded-Proto" >> /etc/cockpit/cockpit.conf
+
 
 # Enable the socket last, with config in place
 systemctl enable --now cockpit.socket
