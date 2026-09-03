@@ -27,3 +27,17 @@ echo "ProtocolHeader = X-Forwarded-Proto" >> /etc/cockpit/cockpit.conf
 
 # Enable the socket last, with config in place
 systemctl enable --now cockpit.socket
+
+# --- Apache (httpd) web server ---
+# Install httpd
+dnf install -y httpd
+
+# Simple landing page so the connection is visibly working
+echo "<h1>Apache server connected!</h1>" > /var/www/html/index.html
+
+# Open the guest firewall for HTTP
+firewall-cmd --add-service=http --permanent
+firewall-cmd --reload
+
+# Enable and start httpd
+systemctl enable --now httpd

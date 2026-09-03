@@ -19,10 +19,22 @@ virtualmachines:
             protocol: TCP
             targetPort: 9090
             name: cockpit
+      - name: web
+        ports:
+          - port: 80
+            protocol: TCP
+            targetPort: 80
+            name: web
     routes:
       - name: cockpit
         host: cockpit
         service: cockpit
         targetPort: 9090
+        tls: true
+        tls_termination: Edge
+      - name: web
+        host: web
+        service: web
+        targetPort: 80
         tls: true
         tls_termination: Edge

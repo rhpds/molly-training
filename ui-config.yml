@@ -21,3 +21,5 @@ tabs:
     external: true
   - name: "RHEL Web Console"
     url: https://cockpit-${guid}.${domain}/
+  - name: "Apache Web Server"
+    url: https://web-${guid}.${domain}/
